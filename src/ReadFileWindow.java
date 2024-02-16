@@ -12,7 +12,7 @@ public class ReadFileWindow extends JFrame {
 
     public ReadFileWindow() {
         setTitle("Read Insulin Values");
-        setSize(500, 400);
+        setSize(330, 200);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
