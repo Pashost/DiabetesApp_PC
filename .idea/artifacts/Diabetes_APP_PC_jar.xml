@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Diabetes_APP_PC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Diabetes_APP_PC_jar</output-path>
+    <root id="archive" name="Diabetes_APP_PC.jar">
+      <element id="module-output" name="Diabetes_APP_PC" />
+    </root>
+  </artifact>
+</component>
