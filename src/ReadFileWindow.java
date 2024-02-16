@@ -25,6 +25,7 @@ public class ReadFileWindow extends JFrame {
 
         readInsulinValues();
 
+
     }
 
     private void readInsulinValues() {
