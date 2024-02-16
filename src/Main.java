@@ -21,7 +21,7 @@ public class Main extends JFrame {
         setContentPane(Jpamel);
         setTitle("Diabetes App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(330,400);
+        setSize(330,200);
         setLocationRelativeTo(null);
         setVisible(true);
 
