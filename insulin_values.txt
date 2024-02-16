@@ -1,0 +1,4 @@
+	Time: 20:44:39
+SugarValue: 2.0
+Food Coefficient: 2.0
+Insulin Value: 0.0
