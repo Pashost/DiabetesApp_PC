@@ -1,4 +1,14 @@
-	Time: 20:44:39
+	 Year :2024 Month :2 Day : 17 Time::14:53:31
+SugarValue: 1.0
+Food Coefficient: 1.0
+Insulin Value: -1.5
+
+	 Year :2024 Month :2 Day : 17 Time::14:53:39
 SugarValue: 2.0
-Food Coefficient: 2.0
-Insulin Value: 0.0
+Food Coefficient: 3.0
+Insulin Value: 1.0
+
+	 Year :2024 Month :2 Day : 17 Time::14:53:52
+SugarValue: 5.0
+Food Coefficient: 5.0
+Insulin Value: 4.5

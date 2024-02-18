@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Calendar;
 
 public class Main extends JFrame {
@@ -16,6 +14,8 @@ public class Main extends JFrame {
     private JLabel ShugarLBL;
     private JLabel XBLBL;
     private JButton getThePrevioudsResultsButton;
+    private JCheckBox checkBox1;
+    private JButton settingsButton;
 
     public Main(){
         setContentPane(Jpamel);
@@ -77,15 +77,20 @@ public class Main extends JFrame {
                 }
             }
             Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
             int hour = calendar.get(Calendar.HOUR_OF_DAY);
             int minute = calendar.get(Calendar.MINUTE);
             int second = calendar.get(Calendar.SECOND);
-            String newContent = "\tTime: " + hour + ":" + minute + ":" + second + "\n" +
+            String newContent = "\t " + "Year :" + year + " Month :" + month + " Day : " + day + " Time:" + ":" + hour + ":" + minute + ":" + second + "\n" +
                     "SugarValue: " + sugarValue + "\n" +
                     "Food Coefficient: " + XBValue + "\n" +
-                    "Insulin Value: " + insulinValue + "\n" +
-                    oldContent.toString();
-            FileWriter writer = new FileWriter(file);
+                    "Insulin Value: " + insulinValue + "\n";
+            FileWriter writer = new FileWriter(file, true);
+            if (oldContent.length() > 0) {
+                writer.write(System.lineSeparator());
+            }
             writer.write(newContent);
             writer.close();
 
