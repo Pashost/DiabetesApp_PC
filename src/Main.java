@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Calendar;
-
 public class Main extends JFrame {
     private JLabel TExtOnTheBotom;
     private JButton button1;
@@ -16,14 +15,19 @@ public class Main extends JFrame {
     private JButton getThePrevioudsResultsButton;
     private JCheckBox checkBox1;
     private JButton settingsButton;
+    private Settings settings;
 
-    public Main(){
+    public Main() {
         setContentPane(Jpamel);
         setTitle("Diabetes App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(330,200);
+        setSize(430, 200);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        settings = new Settings();
+        String savedText = settings.getSavedText();
+
 
         button1.addActionListener(new ActionListener() {
             @Override
@@ -31,9 +35,14 @@ public class Main extends JFrame {
                 try {
                     double sugarValue = parseNumber(textField1.getText()).doubleValue();
                     double XBValue = parseNumber(textField3.getText()).doubleValue();
+                    if (checkBox1.isSelected()) {
+                        String savedText = settings.getSavedText();
+                        double savedValue = Double.parseDouble(savedText);
+                        XBValue *= savedValue;
+                    }
                     double insulinValue = Colkulations(sugarValue, XBValue);
-                    saveData(insulinValue,sugarValue,XBValue);
-                    JOptionPane.showMessageDialog(null,"Insulin Value: " + insulinValue);
+                    saveData(insulinValue, sugarValue, XBValue);
+                    JOptionPane.showMessageDialog(null, "Insulin Value: " + insulinValue);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Invalid input. Please enter valid numbers.");
                     textField1.setText("");
@@ -41,6 +50,7 @@ public class Main extends JFrame {
                 }
             }
         });
+
         getThePrevioudsResultsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,14 +58,30 @@ public class Main extends JFrame {
                 readFileWindow.setVisible(true);
             }
         });
+
+        settingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                settings.setVisible(true);
+            }
+        });
+
     }
+
     public static void main(String[] args) {
         new Main();
     }
-    public double Colkulations(double sugar, double XB){
-        double result = (sugar - 6) / 2 + XB;
-        return result;
+
+    public double Colkulations(double sugar, double XB) {
+        if (sugar >= 6) {
+            double result = (sugar - 6) / 2 + XB;
+            return result;
+        }else {
+            double result = XB;
+            return result;
+        }
     }
+
     private Number parseNumber(String text) throws NumberFormatException {
         try {
             return Double.parseDouble(text);
@@ -63,6 +89,7 @@ public class Main extends JFrame {
             throw e;
         }
     }
+
     private void saveData(double insulinValue, double sugarValue, double XBValue) {
         try {
             File file = new File("insulin_values.txt");
